@@ -45,11 +45,11 @@ public class Movement : MonoBehaviour
 
     void CheckInGround()
     {
-        isGrounded = Physics.CheckSphere(transform.position + new Vector3(0, -1f), 0.1f, groundLayers, QueryTriggerInteraction.Ignore);
+        isGrounded = Physics.CheckSphere(transform.position + new Vector3(0, 0f), 0.1f, groundLayers, QueryTriggerInteraction.Ignore);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, -1f), 0.1f);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 0f), 0.1f);
     }
 }
