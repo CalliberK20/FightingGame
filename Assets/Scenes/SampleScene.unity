@@ -345,12 +345,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  isCrouching: 0
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
   movementSpeed: 10
   jumpForce: 200
+  attackDelay: 0
 --- !u!54 &842077064
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 1224482590}
   - component: {fileID: 1224482593}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -850,12 +850,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  isCrouching: 0
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
   movementSpeed: 10
   jumpForce: 200
+  attackDelay: 0
 --- !u!54 &1493603260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1140,12 +1140,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  isCrouching: 0
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
   movementSpeed: 10
   jumpForce: 200
+  attackDelay: 0
 --- !u!54 &1726035752
 Rigidbody:
   m_ObjectHideFlags: 0
