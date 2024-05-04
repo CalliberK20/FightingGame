@@ -70,44 +70,44 @@ public class Movement : MonoBehaviour
 
         //consumables
         //wind orb
-        if (Input.GetKeyDown(Keycode.U))
+        if (Input.GetKeyDown(KeyCode.U))
         {
 
         }
 
         //healing tincture
-        if (Input.GetKeyDown(Keycode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
 
         }
 
         //smoke bomb
-        if (Input.GetKeyDown(Keycode.O))
+        if (Input.GetKeyDown(KeyCode.O))
         {
 
         }
 
         //attacks
         //1strike
-        if (Input.GetKeyDown(Keycode.J))
+        if (Input.GetKeyDown(KeyCode.J))
         {
 
         }
 
         //2strike
-        if (Input.GetKeyDown(Keycode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
 
         }
 
         //3strike
-        if (Input.GetKeyDown(Keycode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
 
         }
 
         //blocking or parry
-        if (Input.GetKeyDown(Keycode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
 
         }
