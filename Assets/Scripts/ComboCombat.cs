@@ -10,10 +10,11 @@ public class Combo
     public string comboName;
 
     public List<KeyCode> sequence = new List<KeyCode>();
+    public string functionName;
     public float animationDelay = 0.5f;
 }
 
-public class ComboCombat : MonoBehaviour
+public abstract class ComboCombat : MonoBehaviour
 {
     public KeyCode downKey;
     public KeyCode upKey;
@@ -40,6 +41,8 @@ public class ComboCombat : MonoBehaviour
     private float attackTimeProcess = 0;
     private float attackTime;
 
+    [HideInInspector]
+    public Rigidbody rb;
 
     private void OnValidate()
     {
@@ -57,7 +60,7 @@ public class ComboCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -140,6 +143,7 @@ public class ComboCombat : MonoBehaviour
                 attackTimeProcess = 0;
                 this.matchedCombo = matchedCombo;
                 attackTime = matchedCombo.animationDelay;
+                Attack(matchedCombo.functionName);
                 onAttack = true;
                 break;
             }
@@ -148,4 +152,6 @@ public class ComboCombat : MonoBehaviour
         inputedKeys.Clear();
         onProcess = false;
     }
+
+    public abstract void Attack(string function);
 }

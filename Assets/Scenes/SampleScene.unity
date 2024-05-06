@@ -322,9 +322,9 @@ GameObject:
   - component: {fileID: 842077065}
   - component: {fileID: 842077064}
   - component: {fileID: 842077063}
-  - component: {fileID: 842077069}
   - component: {fileID: 842077068}
   - component: {fileID: 842077070}
+  - component: {fileID: 842077071}
   m_Layer: 0
   m_Name: KnightChar
   m_TagString: Untagged
@@ -551,7 +551,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 842077069}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ComboCombat, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 0
@@ -570,47 +570,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &842077069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842077062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee68191383f3ea4db58ea87b9130146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  downKey: 115
-  upKey: 119
-  leftKey: 97
-  rightKey: 100
-  key1: 106
-  key2: 105
-  key3: 108
-  key4: 107
-  onAttack: 0
-  onProcess: 0
-  inputKeyProcess: 0.5
-  matchedCombo:
-    comboName: 
-    sequence: 
-    animationDelay: 0.5
-  inputedKeys: 
-  combos:
-  - comboName: 'J, '
-    sequence: 6a000000
-    animationDelay: 3
-  - comboName: 'J, J, '
-    sequence: 6a0000006a000000
-    animationDelay: 3
-  - comboName: 'J, J, I, I, '
-    sequence: 6a0000006a0000006900000069000000
-    animationDelay: 3
-  - comboName: 'J, J, I, I, '
-    sequence: 6a0000006a0000006900000069000000
-    animationDelay: 3
 --- !u!95 &842077070
 Animator:
   serializedVersion: 5
@@ -632,6 +591,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &842077071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842077062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b0dea71d62cea4fbdde203b6509a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  downKey: 0
+  upKey: 0
+  leftKey: 0
+  rightKey: 0
+  key1: 106
+  key2: 0
+  key3: 0
+  key4: 0
+  onAttack: 0
+  onProcess: 0
+  inputKeyProcess: 0.1
+  matchedCombo:
+    comboName: 
+    sequence: 
+    functionName: 
+    animationDelay: 0.5
+  inputedKeys: 
+  combos:
+  - comboName: 'J, '
+    sequence: 6a000000
+    functionName: Atk1
+    animationDelay: 3
+  knightAnim: {fileID: 842077070}
 --- !u!1 &1224482589
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +744,6 @@ GameObject:
   - component: {fileID: 1493603261}
   - component: {fileID: 1493603260}
   - component: {fileID: 1493603259}
-  - component: {fileID: 1493603258}
   - component: {fileID: 1493603257}
   - component: {fileID: 1493603264}
   m_Layer: 0
@@ -839,7 +832,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1493603258}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ComboCombat, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 0
@@ -858,35 +851,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1493603258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493603256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee68191383f3ea4db58ea87b9130146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  downKey: 0
-  upKey: 0
-  leftKey: 0
-  rightKey: 0
-  key1: 0
-  key2: 0
-  key3: 0
-  key4: 0
-  onAttack: 0
-  onProcess: 0
-  inputKeyProcess: 0.1
-  matchedCombo:
-    comboName: 
-    sequence: 
-    animationDelay: 0.5
-  inputedKeys: 
-  combos: []
 --- !u!114 &1493603259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,6 +1162,9 @@ MonoBehaviour:
     animationDelay: 0.5
   inputedKeys: 
   combos: []
+  timeInputProcess: 0
+  attackTimeProcess: 0
+  attackTime: 0
 --- !u!114 &1726035751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,7 +1332,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1224482592}
   - {fileID: 742870582}
-  - {fileID: 842077067}
   - {fileID: 519420032}
+  - {fileID: 842077067}
   - {fileID: 1726035755}
   - {fileID: 1493603263}
