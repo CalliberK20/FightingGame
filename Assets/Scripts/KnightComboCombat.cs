@@ -14,16 +14,16 @@ public class KnightComboCombat : ComboCombat
     private IEnumerator Atk1()
     {
         yield return null;
-        knightAnim.Play("knightAttk");
+        knightAnim.Play("knight1Attk");
         Debug.Log("Atk 1");
 
         float time = 0;
-        while(time < 2)
+        while(time < .1)
         {
             yield return null;
             time += Time.deltaTime;
             Debug.Log("Moving: " + time);
-            rb.velocity = -Vector3.left * 4;
+            rb.velocity = -Vector3.left * 5;
         }
         rb.velocity = Vector3.zero;
     }
