@@ -27,7 +27,10 @@ public abstract class ComboCombat : MonoBehaviour
     public KeyCode key4;
     [Space]
     public bool onAttack = false;
-    public bool onProcess = false;
+    //public bool onProcess = false;
+    public bool onPress = false;
+    [Space]
+    public float timeInputProcess = 0;
     public float inputKeyProcess = 0.1f;
 
 
@@ -36,7 +39,6 @@ public abstract class ComboCombat : MonoBehaviour
     [Space]
     public List<Combo> combos = new List<Combo>();
 
-    private float timeInputProcess = 0;
 
     private float attackTimeProcess = 0;
     private float attackTime;
@@ -46,7 +48,7 @@ public abstract class ComboCombat : MonoBehaviour
 
     private void OnValidate()
     {
-        foreach(Combo combo in combos)
+        foreach (Combo combo in combos)
         {
             string comboName = "";
             for (int i = 0; i < combo.sequence.Count; i++)
@@ -69,6 +71,7 @@ public abstract class ComboCombat : MonoBehaviour
         if (onAttack)
         {
             attackTimeProcess += Time.deltaTime;
+            Debug.Log(attackTimeProcess);
             if (attackTimeProcess >= attackTime)
                 onAttack = false;
             return;
@@ -108,7 +111,7 @@ public abstract class ComboCombat : MonoBehaviour
             CheckKeys(key4);
         }
 
-        if (onProcess)
+        if (onPress)
         {
             timeInputProcess += Time.deltaTime;
             if (timeInputProcess >= inputKeyProcess)
@@ -119,29 +122,37 @@ public abstract class ComboCombat : MonoBehaviour
     void CheckKeys(KeyCode key)
     {
         inputedKeys.Add(key);
-        if (!onProcess)
-            timeInputProcess = 0;
-        onProcess = true;
+        onPress = true && !onAttack;
+        timeInputProcess = 0;
+        /*        if (!onProcess)
+                onProcess = true;*/
     }
 
     private void StartAnim()
     {
-        bool match = false;
-        Combo matchedCombo = null;
+        //Combo matchedCombo = null;
+        bool match;
         for (int i = 0; i < combos.Count; i++)
         {
-            if (combos[i].sequence.Count == inputedKeys.Count)
-                for (int j = 0; j < combos[i].sequence.Count; j++)
+            match = false;
+            for (int j = 0; j < combos[i].sequence.Count && inputedKeys.Count == combos[i].sequence.Count; j++)
+            {
+                if (inputedKeys[j] == combos[i].sequence[j])
+                    match = true;
+                else
                 {
-                    if (inputedKeys[j] == combos[i].sequence[j])
-                        match = true;
+                    match = false;
+                    break;
                 }
+            }
 
-            if(match)
+
+            Debug.Log("Match " + match);
+            if (match)
             {
                 matchedCombo = combos[i];
                 attackTimeProcess = 0;
-                this.matchedCombo = matchedCombo;
+                matchedCombo = combos[i];
                 attackTime = matchedCombo.animationDelay;
                 Attack(matchedCombo.functionName);
                 onAttack = true;
@@ -150,7 +161,8 @@ public abstract class ComboCombat : MonoBehaviour
         }
 
         inputedKeys.Clear();
-        onProcess = false;
+        onPress = false;
+        //onProcess = false;
     }
 
     public abstract void Attack(string function);
