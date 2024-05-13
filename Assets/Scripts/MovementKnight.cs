@@ -36,8 +36,10 @@ public class Movement : MonoBehaviour
         if (comboCombat.onAttack || comboCombat.onBlock)
             return;
 
-        rigidbody.MovePosition(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0) * movementSpeed * Time.deltaTime);
+        Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal"), 0);
+        rigidbody.MovePosition(transform.position + move * movementSpeed * Time.deltaTime);
         CheckInGround();
+        anim.SetBool("Walk", move != Vector3.zero);
     }
 
     void CheckInGround()
