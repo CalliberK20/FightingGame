@@ -27,12 +27,14 @@ public abstract class ComboCombat : MonoBehaviour
     public KeyCode key4;
     [Space]
     public bool onAttack = false;
+    public bool onBlock = false;
     //public bool onProcess = false;
     public bool onPress = false;
     [Space]
     public float timeInputProcess = 0;
     public float inputKeyProcess = 0.1f;
 
+    private float holdPressProcess = 0;
 
     public Combo matchedCombo;
     public List<KeyCode> inputedKeys = new List<KeyCode>();
@@ -42,6 +44,10 @@ public abstract class ComboCombat : MonoBehaviour
 
     private float attackTimeProcess = 0;
     private float attackTime;
+    private PositionHandler positionHandler;
+
+    private float flipPos = 1;
+
 
     [HideInInspector]
     public Rigidbody rb;
@@ -63,11 +69,17 @@ public abstract class ComboCombat : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        positionHandler = GetComponent<PositionHandler>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (onBlock)
+        {
+            return;
+        }
+
         if (onAttack)
         {
             attackTimeProcess += Time.deltaTime;
@@ -76,6 +88,7 @@ public abstract class ComboCombat : MonoBehaviour
                 onAttack = false;
             return;
         }
+
 
         if (Input.GetKeyDown(downKey))
         {
@@ -146,16 +159,14 @@ public abstract class ComboCombat : MonoBehaviour
                 }
             }
 
-
-            Debug.Log("Match " + match);
             if (match)
             {
+                Debug.Log("Match Found");
                 matchedCombo = combos[i];
                 attackTimeProcess = 0;
                 matchedCombo = combos[i];
                 attackTime = matchedCombo.animationDelay;
                 Attack(matchedCombo.functionName);
-                onAttack = true;
                 break;
             }
         }
@@ -166,4 +177,52 @@ public abstract class ComboCombat : MonoBehaviour
     }
 
     public abstract void Attack(string function);
+
+    private IEnumerator Item1()
+    {
+        yield return null;
+        Debug.Log("Item 1 is use");
+    }
+
+    private IEnumerator Item2()
+    {
+        yield return null;
+        Debug.Log("Item 2 is use");
+    }
+
+    private IEnumerator Item3()
+    {
+        yield return null;
+        Debug.Log("Item 3 is use");
+    }
+
+    private IEnumerator Item4()
+    {
+        yield return null;
+        Debug.Log("Item 3 is use");
+    }
+
+    public void HitDamagable()
+    {
+        flipPos = positionHandler.isFlip ? -1f : 1f;
+        Vector3 pos = transform.position + new Vector3(flipPos, 0.5f);
+
+        //Collider2D[] collide = Physics2D.OverlapCircleAll(pos, 0.4f);
+
+        Collider[] collide = Physics.OverlapSphere(pos, 0.4f);
+
+        foreach(Collider collision in collide)
+        {
+            if(collision.gameObject.name != gameObject.name && collision.TryGetComponent(out Damagable damagable))
+            {
+                damagable.Damage(10);
+                break;
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position + new Vector3(flipPos, 0.5f), 0.4f);
+    }
 }

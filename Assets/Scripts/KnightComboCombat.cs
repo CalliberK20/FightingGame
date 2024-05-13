@@ -13,6 +13,7 @@ public class KnightComboCombat : ComboCombat
     private IEnumerator Atk1()
     {
         yield return null;
+        onAttack = true;
         knightAnim.SetTrigger("Attack");
         knightAnim.SetFloat("AttackIndex", 0);
         Debug.Log("Atk 1");
@@ -31,11 +32,13 @@ public class KnightComboCombat : ComboCombat
     private IEnumerator Atk2()
     {
         yield return null;
+        onAttack = true;
         knightAnim.SetTrigger("Attack");
         knightAnim.SetFloat("AttackIndex", 1);
     }
     private IEnumerator Atk3()
     {
+        onAttack = true;
         knightAnim.SetTrigger("Attack");
         knightAnim.SetFloat("AttackIndex", 2);
         yield return null;
@@ -45,5 +48,21 @@ public class KnightComboCombat : ComboCombat
     {
         yield return null;
         knightAnim.SetTrigger("Fient");
+    }
+
+    private IEnumerator Block()
+    {
+        onBlock = true;
+        knightAnim.SetBool("Block", true);
+        while (true)
+        {
+            yield return null;
+            if (Input.GetKeyUp(matchedCombo.sequence[0]))
+            {
+                break;
+            }
+        }
+        onBlock = false;
+        knightAnim.SetBool("Block", false);
     }
 }
