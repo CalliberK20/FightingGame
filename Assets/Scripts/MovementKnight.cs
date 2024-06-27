@@ -68,6 +68,8 @@ public class Movement : MonoBehaviour
     {
         xAxis = Input.GetAxisRaw("Horizontal");
 
+
+
         //consumables
         //wind orb
         if (Input.GetKeyDown(KeyCode.U))
